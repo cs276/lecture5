@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <style>
+
+            p {
+                display: none;
+            }
+
+        </style>
+        <title>hello1</title>
+    </head>
+    <body>
+        <form>
+            <input placeholder="Name" type="text">
+        </form>
+        <p>
+            Hello, <span id="name"></span>.
+        </p>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
+
+            $(document).ready(() => {
+                $('form').on('submit', (e) => {
+                    e.preventDefault();
+                });
+                const input = $('input');
+                input.on('keyup', (e) => {
+                    $('#name').html(input.val());
+                    if (input.val()) {
+                        $('p').show();
+                    }
+                    else {
+                        $('p').hide();
+                    }
+                });
+            });
+
+        </script>
+    </body>
+</html>

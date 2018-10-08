@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <style>
+
+            [v-cloak] {
+                display: none;
+            }
+
+        </style>
+        <title>hello2</title>
+    </head>
+    <body>
+        <div id="app">
+            <form>
+                <input placeholder="Name" type="text" v-model="name">
+            </form>
+            <p v-cloak v-if="name">
+                Hello, {{ name }}.
+            </p>
+        </div>
+        <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+        <script>
+
+            new Vue({
+                el: '#app',
+                data: {
+                    name: ''
+                }
+            });
+
+        </script>
+    </body>
+</html>
