@@ -16,7 +16,7 @@
             <form v-on:submit.prevent>
                 <input placeholder="Name" type="text" v-model="name">
             </form>
-            <p v-cloak v-if="name">
+            <p v-cloak v-show="name">
                 Hello, {{ name }}.
             </p>
         </div>
