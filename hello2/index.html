@@ -13,7 +13,7 @@
     </head>
     <body>
         <div id="app">
-            <form>
+            <form v-on:submit.prevent>
                 <input placeholder="Name" type="text" v-model="name">
             </form>
             <p v-cloak v-if="name">
