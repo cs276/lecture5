@@ -23,6 +23,9 @@
                     <button v-on:click="remove(index)">Remove</button>
                 </li>
             </ul>
+            <p>
+                TODOs: <span v-cloak>{{ todos.length }}</span>
+            </p>
         </div>
         <script src="https://unpkg.com/vue@2.5.17/dist/vue.min.js"></script>
         <script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>todo1</title>
+    </head>
+    <body>
+        <form>
+            <input autocomplete="off" id="todo" placeholder="TODO" type="text">
+            <input type="submit" value="Add">
+        </form>
+        <ul></ul>
+        <p>
+            TODOs: <span id="todos"></span>
+        </p>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
+
+            const todos = [];
+
+            $(document).ready(() => {
+                $('form').on('submit', (e) => {
+                    e.preventDefault();
+                    todos.push($('#todo').val());
+                    $('#todo').val('');
+                    render();
+                });
+            });
+
+            function render() {
+                $('ul').html('');
+                todos.forEach((todo) => {
+                    $('ul').append('<li>' + todo + '</li>');
+                });
+                $('#todos').html(todos.length);
+            }
+            render();
+
+        </script>
+    </body>
+</html>

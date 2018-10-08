@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>todo1</title>
+    </head>
+    <body>
+        <form>
+            <input autocomplete="off" id="todo" placeholder="TODO" type="text">
+            <input type="submit" value="Add">
+        </form>
+        <ul></ul>
+        <p>
+            TODOs: <span id="todos"></span>
+        </p>
+        <script>
+
+            const todos = [];
+
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelector('form').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const todo = document.querySelector('#todo');
+                    todos.push(todo.value);
+                    todo.value = '';
+                    render();
+                });
+            });
+
+            function render() {
+                const ul = document.querySelector('ul');
+                ul.innerHTML = '';
+                todos.forEach((todo) => {
+                    ul.innerHTML += '<li>' + todo + '</li>';
+                });
+                document.querySelector('#todos').innerHTML = todos.length;
+            }
+            render();
+
+        </script>
+    </body>
+</html>
