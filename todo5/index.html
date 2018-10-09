@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <style>
+
+            [v-cloak] {
+                display: none;
+            }
+
+        </style>
+        <title>todo5</title>
+    </head>
+    <body>
+        <div id="app">
+            <form v-on:submit.prevent="add">
+                <input placeholder="TODO" type="text" v-model="todo">
+                <input type="submit" value="Add">
+            </form>
+            <todo-list v-bind:todos="filtered"></todo-list>
+            <input placeholder="Filter" type="text" v-cloak v-show="todos.length" v-model="filter">
+        </div>
+        <script src="https://unpkg.com/vue@2.5.17/dist/vue.min.js"></script>
+        <script id="todo-template" type="text/x-template">
+            <ul>
+                <li v-for="(todo, index) in todos">
+                    {{ todo }}
+                </li>
+            </ul>
+        </script>
+        <script>
+
+            Vue.component('todo-list', {
+                template: '#todo-template',
+                props: {
+                    todos: Array
+                }
+            });
+
+            new Vue({
+                el: '#app',
+                data: {
+                    filter: '',
+                    todo: '',
+                    todos: []
+                },
+                computed: {
+                    filtered() {
+                        return this.todos.filter(todo => todo.indexOf(this.filter) > -1);
+                    }
+                },
+                methods: {
+                    add() {
+                        this.todos.push(this.todo);
+                        this.todo = '';
+                    }
+                }
+
+            });
+
+        </script>
+    </body>
+</html>
