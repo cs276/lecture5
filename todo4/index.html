@@ -11,27 +11,27 @@
             }
 
         </style>
-        <title>todo3</title>
+        <title>todo4</title>
     </head>
     <body>
-        <b-container id="app" v-cloak>
-            <b-jumbotron bg-variant="white" header="TODO List">
-                <b-form class="my-1" v-on:submit.prevent="add">
-                    <input placeholder="TODO" type="text" v-model="todo">
-                    <input type="submit" value="Add">
-                </b-form>
-                <b-list-group >
-                    <b-list-group-item class=" align-items-center my-1" v-for="(todo, index) in filtered">
-                        {{ todo }}
-                        <button class="btn btn-danger float-right" v-on:click="remove(index)">Remove</button>
-                    </b-list-group-item>
-                </b-list-group>
-                <input class="my-1" placeholder="Filter" type="text" v-cloak v-show="todos.length" v-model="filter">
-            </b-jumbotron>
+        <b-container class="my-3" id="app" v-cloak>
+            <b-form autocomplete="off" v-on:submit.prevent="add">
+                <b-input-group class="mb-1">
+                <b-form-input class="mr-2" placeholder="TODO" type="text" v-model="todo"></b-form-input>
+                <b-button type="submit" variant="primary">Add</b-button>
+                </b-input-group>
+            </b-form>
+            <b-list-group>
+                <b-list-group-item class="d-flex justify-content-between align-items-center my-1" v-for="(todo, index) in filtered">
+                    {{ todo }}
+                    <button class="btn btn-danger float-right" v-on:click="remove(index)">Remove</button>
+                </b-list-group-item>
+            </b-list-group>
+            <b-form-input class="my-1" placeholder="Filter" type="text" v-model="filter" v-show="todos.length"></b-form-input>
         </b-container>
         <script src="https://unpkg.com/vue@2.5.17/dist/vue.min.js"></script>
-        <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
-        <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+        <script src="https://unpkg.com/babel-polyfill@6.26.0/dist/polyfill.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-vue@2.0.0-rc.11/dist/bootstrap-vue.js"></script>
         <script>
 
             new Vue({
