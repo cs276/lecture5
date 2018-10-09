@@ -20,20 +20,18 @@
         </p>
         <script>
 
-            document.addEventListener('DOMContentLoaded', () => {
-                document.querySelector('form').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                });
-                const input = document.querySelector('input');
-                input.addEventListener('keyup', () => {
-                    document.querySelector('#name').innerHTML = input.value;
-                    if (input.value) {
-                        document.querySelector('p').style.display = 'block';
-                    }
-                    else {
-                        document.querySelector('p').style.display = 'none';
-                    }
-                });
+            document.querySelector('form').addEventListener('submit', (e) => {
+                e.preventDefault();
+            });
+            const input = document.querySelector('input');
+            input.addEventListener('keyup', () => {
+                document.querySelector('#name').innerHTML = input.value;
+                if (input.value) {
+                    document.querySelector('p').style.display = 'block';
+                }
+                else {
+                    document.querySelector('p').style.display = 'none';
+                }
             });
 
         </script>

@@ -18,13 +18,11 @@
 
             const todos = [];
 
-            $(document).ready(() => {
-                $('form').on('submit', (e) => {
-                    e.preventDefault();
-                    todos.push($('#todo').val());
-                    $('#todo').val('');
-                    render();
-                });
+            $('form').on('submit', (e) => {
+                e.preventDefault();
+                todos.push($('#todo').val());
+                $('#todo').val('');
+                render();
             });
 
             function render() {

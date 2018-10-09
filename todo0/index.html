@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title>todo1</title>
+        <title>todo0</title>
     </head>
     <body>
         <form>
@@ -17,14 +17,12 @@
 
             const todos = [];
 
-            document.addEventListener('DOMContentLoaded', () => {
-                document.querySelector('form').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const todo = document.querySelector('#todo');
-                    todos.push(todo.value);
-                    todo.value = '';
-                    render();
-                });
+            document.querySelector('form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const todo = document.querySelector('#todo');
+                todos.push(todo.value);
+                todo.value = '';
+                render();
             });
 
             function render() {
