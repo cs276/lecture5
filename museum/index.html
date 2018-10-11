@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <style>
+
+            [v-cloak] {
+                display: none;
+            }
+
+        </style>
+        <title>Harvard Art Museums</title>
+    </head>
+    <body>
+        <div id="app">
+            <h1>Harvard Art Museums</h1>
+            <h2>Galleries</h2>
+            <select v-cloak v-model="gallery" v-show="galleries.length">
+                <option disabled selected value="">Choose...</option>
+                <option v-bind:value="gallery.id" v-for="gallery in galleries">{{ gallery.name }}</option>
+            </select>
+            <h2 v-cloak v-show="objects.length">Objects</h2>
+            <ul v-cloak v-show="objects.length">
+                <li v-for="object in objects">
+                    {{ object.title }}</td>
+                </li>
+            </ul>
+        </div>
+        <script src="https://unpkg.com/vue@2.5.17/dist/vue.min.js"></script>
+        <script>
+
+            const API_KEY = "c1e87df0-b623-11e8-b9c8-a39304ff9948";
+
+            new Vue({
+                el: '#app',
+                data: {
+                    gallery: '',
+                    galleries: [],
+                    objects: []
+                },
+                created() {
+                    this.getGalleries(`https://api.harvardartmuseums.org/gallery?apikey=${API_KEY}`);
+                },
+                watch: {
+                    gallery() {
+                        this.objects = [];
+                        this.getObjects(`https://api.harvardartmuseums.org/object?apikey=${API_KEY}&gallery=${this.gallery}`);
+                    }
+                },
+                methods: {
+                    getGalleries(url) {
+                        fetch(url)
+                        .then(response => response.json())
+                        .then(data => { 
+                            this.galleries = this.galleries.concat(data.records);
+                            if (data.info.next) {
+                                this.getGalleries(data.info.next);
+                            }
+                        });
+                    },
+                    getObjects(url) {
+                        fetch(url)
+                        .then(response => response.json())
+                        .then(data => { 
+                            this.objects = this.objects.concat(data.records);
+                            if (data.info.next) {
+                                this.getObjects(data.info.next);
+                            }
+                        });
+                    }
+                }
+            });
+
+        </script>
+    </body>
+</html>
