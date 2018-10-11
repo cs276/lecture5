@@ -1,11 +1,12 @@
 <template>
-
-    <ul>
+    <div>
         <h1>Galleries Listing</h1>
-        <li v-for="gallery in galleries">
-            {{gallery.name}}
-        </li>
-    </ul>
+        <ul>
+          <li v-for="gallery in galleries">
+            <router-link :to="`/gallery/${gallery.id}`">Gallery #{{gallery.id}}: {{gallery.name}} (Floor {{gallery.floor}})</router-link>
+          </li>
+        </ul>
+    </div>
 
 </template>
 
